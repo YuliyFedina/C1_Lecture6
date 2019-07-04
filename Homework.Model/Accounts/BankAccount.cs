@@ -8,7 +8,7 @@ namespace Homework.Accounts
         public long Id { get; set; } //Номер счета
         public string Owner { get; set; } //Владелец счета
         public decimal Sum { get; protected set; } //Сумма на счету
-        public bool IsActive { get; private set; } //Если false, то счет закрыт
+        public bool IsActive { get; private set; } //Если false, то счет закрыт//
 
 
         public BankAccount(long id, decimal sum)
