@@ -6,6 +6,7 @@ namespace Homework
     {
         static void Main(string[] args)
         {
+            //Задание
         }
     }
 }
