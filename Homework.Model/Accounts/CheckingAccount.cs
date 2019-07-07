@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Homework.Accounts
+namespace Homework.Model.Accounts
 {
     class CheckingAccount : BankAccount
     {

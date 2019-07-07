@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Homework.Model.Clients
+﻿namespace Homework.Model.Clients
 {
     class SimpleClient : BankClient
     {

@@ -1,14 +1,13 @@
-﻿
-using System;
+﻿using System;
 
-namespace Homework.Accounts
+namespace Homework.Model.Accounts
 {
     public abstract class BankAccount
     {
-        public long Id { get; set; } //Номер счета
-        public string Owner { get; set; } //Владелец счета
-        public decimal Sum { get; protected set; } //Сумма на счету
-        public bool IsActive { get; private set; } //Если false, то счет закрыт//
+        public long Id { get; }
+        public string Owner { get; set; }
+        public decimal Sum { get; protected set; }
+        private bool IsActive { get; set; }
 
 
         public BankAccount(long id, decimal sum)
@@ -21,6 +20,11 @@ namespace Homework.Accounts
         public BankAccount(long id) : this(id, 0)
         {
         }
+
+        public BankAccount()
+        {
+        }
+
 
         public void Close()
         {
@@ -41,7 +45,7 @@ namespace Homework.Accounts
         {
             if (amount <= 0)
             {
-                throw new ArgumentOutOfRangeException("Сумма операции должна быть больше нуля");
+                throw new ArgumentOutOfRangeException($"Сумма операции ={amount}, а должна быть больше нуля");
             }
         }
         public void EnsureAccountIsActive()

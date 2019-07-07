@@ -4,7 +4,7 @@ namespace Homework
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main( )
         {
             //Реализовать класс Банковский клиент.
             //--Сделать класс Клиент, который может содержать множество счетов (из предыдущего ДЗ)

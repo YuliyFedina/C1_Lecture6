@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Homework.Accounts;
+using Homework.Model.Accounts;
 
-namespace Homework
+namespace Homework.Model.Clients
 {
     public abstract class BankClient
     {

@@ -1,4 +1,4 @@
-﻿namespace Homework.Accounts
+﻿namespace Homework.Model.Accounts
 {
     class SavingAccount : BankAccount
     {
