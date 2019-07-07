@@ -2,10 +2,8 @@
 
 namespace Homework.Model.Accounts
 {
-    class CheckingAccount : BankAccount
+    public class CheckingAccount : BankAccount
     {
-        public decimal ServiceCharge { get; private set; }
-
         public CheckingAccount(long id, decimal sum) : base(id, sum)
         {
         }
@@ -20,14 +18,13 @@ namespace Homework.Model.Accounts
             ServiceCharge = serviceCharge;
         }
 
+        public decimal ServiceCharge { get; }
+
         public void WithdrawCheckingAccount()
         {
             ValidationAmount(ServiceCharge);
             EnsureAccountIsActive();
-            if (ServiceCharge > Sum)
-            {
-                throw new Exception("Сумма списания больше остатка");
-            }
+            if (ServiceCharge > Sum) throw new Exception("Сумма списания больше остатка");
             Sum -= ServiceCharge;
         }
     }

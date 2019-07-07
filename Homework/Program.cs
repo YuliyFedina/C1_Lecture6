@@ -2,9 +2,9 @@
 
 namespace Homework
 {
-    class Program
+    internal class Program
     {
-        static void Main( )
+        private static void Main()
         {
             //Реализовать класс Банковский клиент.
             //--Сделать класс Клиент, который может содержать множество счетов (из предыдущего ДЗ)

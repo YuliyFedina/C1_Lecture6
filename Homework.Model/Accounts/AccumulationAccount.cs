@@ -1,13 +1,9 @@
-﻿
-using System;
+﻿using System;
 
 namespace Homework.Model.Accounts
 {
-    class AccumulationAccount : BankAccount
+    public class AccumulationAccount : BankAccount
     {
-        public decimal InitialInstalment { get; set; }
-        public decimal Rate { get; set; }
-
         public AccumulationAccount(long id, decimal sum) : base(id, sum)
         {
         }
@@ -26,17 +22,20 @@ namespace Homework.Model.Accounts
             Rate = rate;
         }
 
+        public decimal InitialInstalment { get; set; }
+        public decimal Rate { get; set; }
+
         public override void WithdrawFunds(decimal amount)
         {
             if (Sum - InitialInstalment < amount)
-            {
-                throw new Exception($"Нельзя снять с накопительного счета сумму ={amount}, большую первоначального взноса ={InitialInstalment}");
-            }
+                throw new Exception(
+                    $"Нельзя снять с накопительного счета сумму ={amount}, большую первоначального взноса ={InitialInstalment}");
             base.WithdrawFunds(amount);
         }
 
         public void Capitalization()
         {
+            EnsureAccountIsActive();
             Sum += Sum * Rate / 12;
         }
     }

@@ -4,20 +4,19 @@ namespace Homework.Model.Accounts
 {
     public abstract class BankAccount
     {
-        public long Id { get; }
-        public string Owner { get; set; }
-        public decimal Sum { get; protected set; }
-        private bool IsActive { get; set; }
-
-
-        public BankAccount(long id, decimal sum)
+        public BankAccount(long id, decimal sum, long owner)
         {
             Id = id;
             Sum = sum;
+            Owner = owner;
             IsActive = true;
         }
 
-        public BankAccount(long id) : this(id, 0)
+        public BankAccount(long id, decimal sum) : this(id, sum, 0)
+        {
+        }
+
+        public BankAccount(long id) : this(id, 0, 0)
         {
         }
 
@@ -25,13 +24,25 @@ namespace Homework.Model.Accounts
         {
         }
 
+        internal long Id { get; }
+        private long Owner { get; }
+        public decimal Sum { get; protected set; }
+        private bool IsActive { get; set; }
+
+        public long GetId()
+        {
+            return Id;
+        }
+
+        public long GetOwner()
+        {
+            return Owner;
+        }
+
 
         public void Close()
         {
-            if (Sum != 0)
-            {
-                throw new Exception("Счет не может быть закрыт при положителыном балансе");
-            }
+            if (Sum != 0) throw new Exception("Счет не может быть закрыт при положителыном балансе");
 
             IsActive = false;
         }
@@ -44,16 +55,12 @@ namespace Homework.Model.Accounts
         public static void ValidationAmount(decimal amount)
         {
             if (amount <= 0)
-            {
                 throw new ArgumentOutOfRangeException($"Сумма операции ={amount}, а должна быть больше нуля");
-            }
         }
-        public void EnsureAccountIsActive()
+
+        private void EnsureAccountIsActive()
         {
-            if (!IsActive)
-            {
-                throw new Exception("Операция невозможна для закрытого счета");
-            }
+            if (!IsActive) throw new Exception("Операция невозможна для закрытого счета Id={Id}");
         }
 
         public virtual void AddFunds(decimal amount)
@@ -67,10 +74,7 @@ namespace Homework.Model.Accounts
         {
             ValidationAmount(amount);
             EnsureAccountIsActive();
-            if (amount > Sum)
-            {
-                throw new Exception("Сумма списания больше остатка");
-            }
+            if (amount > Sum) throw new Exception("Сумма списания больше остатка");
             Sum -= amount;
         }
     }
